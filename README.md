@@ -11,6 +11,7 @@ Uncomment the lines in the Dockerfile
 And add the files index.html and insert.php in the same repo, these files will be copied inside the container at /var/www/html
 
 Then build your image:
+
 `docker build -t httpd-php .` 
 
 Then run your container using:
