@@ -2,6 +2,8 @@
 
 Contains Dockerfile to show how to run a simple CentOS docker container with PHP and APACHE installed
 
+Also added Phpmailer to the docker file
+
 Uncomment the lines in the Dockerfile
 
 #ADD index.html /var/www/html
