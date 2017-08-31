@@ -6,8 +6,6 @@ MAINTAINER skagalwala
 RUN yum -y update && \
     yum -y install httpd && \
     yum -y install php php-mysql php-devel php-gd php-pspell php-xmlrpc php-xml php-pgsql && \
-    yum -y install wget && \
-    yum -y install unzip && \
     yum clean all 
  
 #Expose the container port
@@ -17,10 +15,12 @@ EXPOSE 80
 #ADD index.html /var/www/html
 #ADD insert.php /var/www/html
 
-#Adding PHP Mailer 
-RUN wget https://github.com/PHPMailer/PHPMailer/archive/master.zip && \
-    unzip master && \
-    rm -f  master.zip
+#Adding PHP Mailer, at / 
+RUN cd /tmp
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer
+#RUN cd /var/www/html
+RUN composer require phpmailer/phpmailer
 
 # Simple startup script to avoid some issues observed with container restart
 ADD run-httpd.sh /run-httpd.sh
